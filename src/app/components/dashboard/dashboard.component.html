@@ -1,0 +1,21 @@
+<div class="container">
+    <h4>PRODUCTOS DISPONIBLES</h4>
+    <div class="row">
+      <div class="col-sm-4 mb-3" *ngFor="let product of products">
+        <div class="card border-primary">
+          <div class="card-header">
+            {{ product.name }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Precio: {{ product.price | currency }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text">
+              <strong>Valoración: </strong>
+              {{ product.average_rating }} ⭐
+              ({{ product.rating_count }} valoraciones)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
