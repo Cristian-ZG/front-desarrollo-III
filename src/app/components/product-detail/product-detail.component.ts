@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Review } from '../../interfaces/review';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   product: any; // Variable para almacenar los datos del producto.
+  reviews: Review[] = []; // Para almacenar las valoraciones del producto.
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +26,7 @@ export class ProductDetailComponent implements OnInit {
     console.log('ID del producto capturado desde la URL:', product_id);
     if (product_id) {
       this.loadProduct(parseInt(product_id, 10)); // Carga los datos del producto.
+      this.loadReviews(parseInt(product_id, 10));
     }
   }
 
@@ -39,5 +42,15 @@ export class ProductDetailComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/']); // Navega al listado principal.
+  }
+
+  loadReviews(product_id: number): void {
+    this.productService.getReviewsByProductId(product_id).subscribe({
+      next: (reviews: Review[]) => {
+        this.reviews = reviews; // Almacena las valoraciones.
+        console.log('Valoraciones cargadas:', reviews); // Para depuración.
+      },
+      error: (err) => console.error('Error al cargar valoraciones:', err),
+    });
   }
 }

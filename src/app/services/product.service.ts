@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
+import { Review } from '../interfaces/review';
 
 // Define interfaces opcionales para tipar los datos
 
@@ -18,6 +19,7 @@ export interface ProductRating {
 export class ProductService {
   private apiUrl = 'http://localhost:3001/'; // URL base del endpoint
   private apiUrlProducts = 'api/product/ratings/'
+  private apiReview = 'api/review/'
 
   constructor(private http: HttpClient) {}
 
@@ -59,5 +61,9 @@ export class ProductService {
    */
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getReviewsByProductId(product_id: number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}${this.apiReview}${product_id}`);
   }
 }

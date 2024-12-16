@@ -25,3 +25,26 @@
       </div>
     </div>
   </div>
+
+<!-------- Sección de valoraciones -------->
+
+<div class="row mt-4">
+  <div class="col-md-8 mx-auto">
+    <h4>Valoraciones:</h4>
+    <div *ngIf="reviews.length > 0; else noReviews">
+      <div class="card mb-3" *ngFor="let review of reviews">
+        <div class="card-body">
+          <h5 class="card-title">{{ review.user_name }}</h5>
+          <p class="card-text">
+            <strong>Valoración:</strong>
+            <span *ngFor="let star of [].constructor(review.rating)">⭐</span>
+          </p>
+          <p class="card-text">{{ review.review_text }}</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noReviews>
+      <p class="text-muted">No hay valoraciones para este producto.</p>
+    </ng-template>
+  </div>
+</div>
