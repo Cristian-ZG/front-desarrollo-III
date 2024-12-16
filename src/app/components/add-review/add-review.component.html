@@ -1,0 +1,49 @@
+<div class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+      <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center">Agregar Valoración</div>
+        <div class="card-body">
+          <form (ngSubmit)="submitReview()">
+            <!-- Campo para el nombre del usuario -->
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="review.user_name"
+              name="user_name"
+              placeholder="Ingrese su nombre de usuario"
+              required
+            />
+  
+            <!-- Selección de estrellas -->
+            <label class="form-label mt-4">Seleccione una puntuación:</label>
+            <select
+              class="form-control"
+              [(ngModel)]="review.rating"
+              name="rating"
+              required
+            >
+              <option value="" disabled selected>Seleccione...</option>
+              <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">
+                {{ star }} ⭐
+              </option>
+            </select>
+  
+            <!-- Campo para la reseña -->
+            <label for="exampleTextarea" class="form-label mt-4">Ingrese su reseña</label>
+            <textarea
+              class="form-control"
+              [(ngModel)]="review.review_text"
+              name="review_text"
+              rows="3"
+              required
+            ></textarea>
+  
+            <div class="card-footer text-center bg-light mt-2">
+              <button class="btn btn-primary" (click)="goBack()">Regresar</button>
+              <button type="submit" class="btn btn-outline-primary ms-2">Agregar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

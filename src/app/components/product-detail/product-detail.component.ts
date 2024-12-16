@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Review } from '../../interfaces/review';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-detail',
@@ -53,4 +54,8 @@ export class ProductDetailComponent implements OnInit {
       error: (err) => console.error('Error al cargar valoraciones:', err),
     });
   }
+
+  goToAddReview(product_id: number): void {
+      this.router.navigate(['/add-review', product_id]);
+    }
 }

@@ -66,4 +66,8 @@ export class ProductService {
   getReviewsByProductId(product_id: number): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}${this.apiReview}${product_id}`);
   }
+
+  addReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(`${this.apiUrl}api/review/`, review);
+  }
 }
