@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Product } from '../interfaces/product';
 
 // Define interfaces opcionales para tipar los datos
-export interface Product {
-  product_id: number;
-  name: string;
-  description: string;
-  price: number;
-}
 
 export interface ProductRating {
   rating_id: number;
