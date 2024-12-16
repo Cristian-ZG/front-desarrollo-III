@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-add-review',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, FormsModule],
+  imports: [CommonModule, NgFor, FormsModule],
   templateUrl: './add-review.component.html',
   styleUrl: './add-review.component.css'
 })
