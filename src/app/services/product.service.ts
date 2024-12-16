@@ -16,7 +16,8 @@ export interface ProductRating {
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3001/api/product/ratings'; // URL base del endpoint
+  private apiUrl = 'http://localhost:3001/'; // URL base del endpoint
+  private apiUrlProducts = 'api/product/ratings/'
 
   constructor(private http: HttpClient) {}
 
@@ -24,15 +25,15 @@ export class ProductService {
    * Obtiene todos los productos con sus valoraciones desde el backend.
    */
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
+    return this.http.get<Product[]>(`${this.apiUrl}${this.apiUrlProducts}`);
   }
 
   /**
    * Obtiene información de un producto específico.
    * @param id El ID del producto a buscar.
    */
-  getProductById(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  getProductById(product_id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}${this.apiUrlProducts}${product_id}`);
   }
 
   /**

@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow-lg border-primary">
+          <div class="card-header bg-primary text-white">
+            <h3 class="mb-0 text-center">{{ product.product.name }}</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="text-muted">Descripción:</h4>
+            <p class="card-text">{{ product.product.description }}</p>
+            
+            <h5>Precio:</h5>
+            <p class="card-text">{{ product.product.price | currency }}</p>
+            
+            <h5>Valoración promedio:</h5>
+            <p class="card-text">
+              {{ product.product.average_rating }} ⭐ 
+              <small class="text-muted">({{ product.product.rating_count }} valoraciones)</small>
+            </p>
+          </div>
+          <div class="card-footer text-center bg-light">
+            <button class="btn btn-primary" (click)="goBack()">Regresar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
