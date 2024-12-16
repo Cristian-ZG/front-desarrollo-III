@@ -30,21 +30,20 @@ export class AddReviewComponent implements OnInit{
   ngOnInit(): void {
     const product_id = this.route.snapshot.paramMap.get('product_id');
     if (product_id) {
-      this.review.product_id = parseInt(product_id, 10); // Asigna el product_id al objeto de valoración
+      this.review.product_id = parseInt(product_id, 10); //Asigna el product_id al objeto de valoración
     }
   }
 
   submitReview(): void {
     this.productService.addReview(this.review).subscribe({
       next: (response) => {
-        console.log('Valoración agregada con éxito:', response);
-        this.goBack(); // Regresa a la vista de detalles del producto
+        this.goBack(); //Regresa a la vista de detalles del producto
       },
       error: (err) => console.error('Error al agregar valoración:', err)
     });
   }
 
   goBack(): void {
-    this.router.navigate(['/product', this.review.product_id]); // Redirige a la vista de detalles del producto
+    this.router.navigate(['/product', this.review.product_id]); //Redirige a la vista de detalles del producto
   }
 }

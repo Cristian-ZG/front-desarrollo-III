@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { Review } from '../interfaces/review';
 
-// Define interfaces opcionales para tipar los datos
-
 export interface ProductRating {
   rating_id: number;
   product_id: number;
@@ -17,57 +15,29 @@ export interface ProductRating {
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3001/'; // URL base del endpoint
-  private apiUrlProducts = 'api/product/ratings/'
-  private apiReview = 'api/review/'
+  private apiUrl = 'http://localhost:3001/'; //URL base del endpoint
+  private apiUrlProducts = 'api/product/ratings/' //URL para productos
+  private apiReview = 'api/review/' //URL para reviews
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Obtiene todos los productos con sus valoraciones desde el backend.
-   */
+//Obtiene todos los productos con sus valoraciones desde el backend.
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}${this.apiUrlProducts}`);
   }
 
-  /**
-   * Obtiene información de un producto específico.
-   * @param id El ID del producto a buscar.
-   */
+//Obtiene información de un producto específico.
   getProductById(product_id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}${this.apiUrlProducts}${product_id}`);
   }
 
-  /**
-   * Crea un nuevo producto en el backend.
-   * @param product Los datos del producto a crear.
-   */
-  createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product);
-  }
-
-  /**
-   * Actualiza un producto existente.
-   * @param id El ID del producto a actualizar.
-   * @param product Los nuevos datos del producto.
-   */
-  updateProduct(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.apiUrl}/${id}`, product);
-  }
-
-  /**
-   * Elimina un producto por su ID.
-   * @param id El ID del producto a eliminar.
-   */
-  deleteProduct(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  }
-
+//Obtiene las reseñas de un producto especifico.
   getReviewsByProductId(product_id: number): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.apiUrl}${this.apiReview}${product_id}`);
   }
 
+//Agrega una reseña a un producto.
   addReview(review: Review): Observable<Review> {
-    return this.http.post<Review>(`${this.apiUrl}api/review/`, review);
+    return this.http.post<Review>(`${this.apiUrl}${this.apiReview}`, review);
   }
 }

@@ -13,11 +13,4 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontd3';
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        console.log(`Navegación detectada: ${event.url}`);
-      }
-    });
-  }
 }
